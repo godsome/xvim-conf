@@ -77,7 +77,7 @@ set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件列表
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#begin('./.vim/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'chxuan/vim-buffer'
 Plug 'chxuan/tagbar'
@@ -229,7 +229,8 @@ nnoremap <leader>gg :GV?<cr>
 
 " gutentags
 " enable gtags module
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
+" let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_modules = ['gtags_cscope']
 " config project root markers.
 let g:gutentags_project_root = ['.root']
 let g:gutentags_add_default_project_roots = 0
@@ -251,13 +252,22 @@ noremap <c-\>a :GscopeFind a <C-R><C-W><cr>
 noremap <c-\>z :GscopeFind z <C-R><C-W><cr>
 
 " vim-preview
-noremap <m-u> :PreviewScroll -1<cr>
-noremap <m-d> :PreviewScroll +1<cr>
+" noremap <m-u> :PreviewScroll -1<cr>
+" noremap <m-d> :PreviewScroll +1<cr>
+noremap <m-k> :PreviewScroll -1<cr>
+noremap <m-j> :PreviewScroll +1<cr>
 autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
 autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
 
 " clang_complete
-let g:clang_library_path = '/usr/lib/llvm-10/lib'
+" let g:clang_library_path = '/usr/lib/llvm-10/lib'
+" let g:clang_library_path = '/usr/lib64/libclang.so'
+let g:clang_library_path = substitute($MYVIMRC, 'init\.vim', 'lib/libclang.so', '')
+let g:clang_complete_auto = 1
+let g:clang_use_library = 1
+let g:clang_complete_copen = 1
+set omnifunc=ClangComplete
+set completefunc=ClangComplete
 
 
 " note: fonts must be installed for devicons
