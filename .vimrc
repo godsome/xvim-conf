@@ -111,7 +111,8 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 Plug 'skywind3000/vim-preview'
-Plug 'bogado/file-line'
+" Plug 'bogado/file-line'
+Plug 'wsdjeg/vim-fetch'
 Plug 'vivien/vim-linux-coding-style'
 Plug 'xavierd/clang_complete'
 
@@ -234,6 +235,8 @@ let g:gutentags_modules = ['gtags_cscope']
 " config project root markers.
 let g:gutentags_project_root = ['.root']
 let g:gutentags_add_default_project_roots = 0
+let g:gutentags_exclude_filetypes = ['*.sh', '*.cmd', '*.ko', '*.o', '*.d']
+let g:gutentags_generate_on_write = 0
 " generate datebases in my cache directory, prevent gtags files polluting my project
 let g:gutentags_cache_dir = expand('~/.cache/tags')
 " change focus to quickfix window after search (optional).
