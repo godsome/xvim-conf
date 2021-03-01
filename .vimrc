@@ -145,7 +145,11 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "
 " 主题设置
 set background=dark
 let g:onedark_termcolors=256
-colorscheme onedark
+" colorscheme onedark
+colorscheme badwolf
+if &diff
+    colorscheme onedark
+endif
 
 " airline
 let g:airline_theme="onedark"
@@ -212,6 +216,9 @@ let g:Lf_WildIgnore = {
 let g:Lf_UseCache = 0
 
 " ack
+if executable('rg')
+    let g:ackprg = 'rg --vimgrep'
+endif
 nnoremap <leader>F :Ack!<space>
 
 " echodoc.vim
@@ -243,16 +250,23 @@ let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_plus_switch = 1
 " disable the default keymaps
 let g:gutentags_plus_nomap = 1
-noremap <c-\>s :GscopeFind s <C-R><C-W><cr>
-noremap <c-\>g :GscopeFind g <C-R><C-W><cr>
-noremap <c-\>c :GscopeFind c <C-R><C-W><cr>
-noremap <c-\>t :GscopeFind t <C-R><C-W><cr>
-noremap <c-\>e :GscopeFind e <C-R><C-W><cr>
-noremap <c-\>f :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
-noremap <c-\>i :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
-noremap <c-\>d :GscopeFind d <C-R><C-W><cr>
-noremap <c-\>a :GscopeFind a <C-R><C-W><cr>
-noremap <c-\>z :GscopeFind z <C-R><C-W><cr>
+" 在tab中打开，利用已打开的buffer
+set switchbuf=useopen,usetab,newtab
+" quickfix不包含在bufferlist里
+augroup qf
+        autocmd!
+        autocmd FileType qf set nobuflisted
+augroup END
+noremap <c-\>s :tab GscopeFind s <C-R><C-W><cr>
+noremap <c-\>g :tab GscopeFind g <C-R><C-W><cr>
+noremap <c-\>c :tab GscopeFind c <C-R><C-W><cr>
+noremap <c-\>t :tab GscopeFind t <C-R><C-W><cr>
+noremap <c-\>e :tab GscopeFind e <C-R><C-W><cr>
+noremap <c-\>f :tab GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+noremap <c-\>i :tab GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+noremap <c-\>d :tab GscopeFind d <C-R><C-W><cr>
+noremap <c-\>a :tab GscopeFind a <C-R><C-W><cr>
+noremap <c-\>z :tab GscopeFind z <C-R><C-W><cr>
 
 " vim-preview
 " noremap <m-u> :PreviewScroll -1<cr>
