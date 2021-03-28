@@ -222,9 +222,6 @@ else
     nnoremap <leader>F :GrepperGrep<space>
 endif
 
-" echodoc.vim
-let g:echodoc_enable_at_startup = 1
-
 " vim-smooth-scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
