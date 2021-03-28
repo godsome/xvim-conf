@@ -84,7 +84,7 @@ Plug 'chxuan/tagbar'
 Plug 'Yggdroot/LeaderF'
 Plug 'mhinz/vim-grepper'
 Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch.vim'
+" Plug 'haya14busa/incsearch.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -111,7 +111,6 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 Plug 'skywind3000/vim-preview'
-" Plug 'bogado/file-line'
 Plug 'wsdjeg/vim-fetch'
 Plug 'vivien/vim-linux-coding-style'
 Plug 'xavierd/clang_complete'
@@ -184,9 +183,9 @@ let g:tagbar_width = 30
 nnoremap <silent> <leader>t :TagbarToggle<cr>
 
 " incsearch.vim
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
+" map /  <Plug>(incsearch-forward)
+" map ?  <Plug>(incsearch-backward)
+" map g/ <Plug>(incsearch-stay)
 
 " vim-easymotion
 let g:EasyMotion_smartcase = 1
