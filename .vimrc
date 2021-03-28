@@ -82,7 +82,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'chxuan/vim-buffer'
 Plug 'chxuan/tagbar'
 Plug 'Yggdroot/LeaderF'
-Plug 'mileszs/ack.vim'
+Plug 'mhinz/vim-grepper'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -215,11 +215,12 @@ let g:Lf_WildIgnore = {
             \}
 let g:Lf_UseCache = 0
 
-" ack
+" grepper
 if executable('rg')
-    let g:ackprg = 'rg --vimgrep'
+    nnoremap <leader>F :GrepperRg<space>
+else
+    nnoremap <leader>F :GrepperGrep<space>
 endif
-nnoremap <leader>F :Ack!<space>
 
 " echodoc.vim
 let g:echodoc_enable_at_startup = 1
