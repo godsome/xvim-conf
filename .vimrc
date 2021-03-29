@@ -289,5 +289,15 @@ set completefunc=ClangComplete
 set noshowmode
 let g:echodoc_enable_at_startup = 1
 
+" true color
+if has("termguicolors")
+    " fix bug for vim
+    set t_8f=^[[38;2;%lu;%lu;%lum
+    set t_8b=^[[48;2;%lu;%lu;%lum
+
+    " enable true color
+    set termguicolors
+endif
+
 " note: fonts must be installed for devicons
 " fc-cache -vf .vim/fonts
