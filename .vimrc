@@ -18,10 +18,13 @@ set showcmd              " select模式下显示选中的行数
 set ruler                " 总是显示光标位置
 set number               " 开启行号显示
 set cursorline           " 高亮显示当前行
+set cursorcolumn         " 高亮显示当前列
+set laststatus=2         " 总是显示状态栏
 set whichwrap+=<,>,h,l   " 设置光标键跨行
 set ttimeoutlen=0        " 设置<ESC>键响应时间
 set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
 highlight Visual cterm=reverse ctermbg=Black ctermfg=White      " visual mode style
+hi CursorColumn ctermbg=238
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
@@ -95,6 +98,7 @@ Plug 'vivien/vim-linux-coding-style'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rhysd/committia.vim'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'bronson/vim-trailing-whitespace'
 
 call plug#end()
 
@@ -109,6 +113,15 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#coc#enabled = 0
+let airline#extensions#coc#error_symbol = 'Error:'
+let airline#extensions#coc#warning_symbol = 'Warning:'
+let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+" if &diff
+"     colorscheme onedark
+" endif
+colorscheme onedark
 
 " vim-buffer
 nnoremap <silent> <c-p> :PreviousBuffer<cr>
@@ -118,10 +131,11 @@ nnoremap <silent> <leader>D :BufOnly<cr>
 
 " gutentags
 let g:gutentags_modules = ['gtags_cscope']
-let g:gutentags_project_root = ['.root', '.git', '.hg', '.svn', 'compile_commands.json']
+let g:gutentags_project_root = ['.root']
 let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_plus_switch = 1
 let g:gutentags_define_advanced_commands = 1
+let g:gutentags_exclude_filetypes = ['sh', 'py', 'Makefile']
 
 " quickfix不包含在bufferlist里
 augroup qf
@@ -311,6 +325,18 @@ nnoremap <silent> <leader>n :CocCommand explorer<cr>
 " install coc plugin
 " :CocInstall coc-ccls
 " :CocInstall coc-explorer
+"" "languageserver": {
+"" "ccls": {
+"" "command": "ccls",
+"" "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+"" "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+"" "initializationOptions": {
+""     "cache": {
+""       "directory": ".ccls-cache"
+""     }
+""   }
+"" }
+"" }
 
 " asyncrun
 nnoremap <leader>r :AsyncRun rg --no-heading --line-number --type asm 
